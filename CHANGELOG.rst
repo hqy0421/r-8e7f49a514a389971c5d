@@ -1,6 +1,7 @@
 1.14.3 - Unreleased
 -------------------
 
+- feat: Added the :mod:`agate.inventory` subpackage for correctable perpetual moving-average inventory accounting. :class:`.InventoryLedger` processes goods receipts and issues per product/location in business order, produces cost-detail, ending-balance and per-product monthly gross-profit tables, and supports atomic insert/update/delete corrections that replay only affected buckets, carry untouched rows over verbatim and record replaced contributions in a withdrawals table. All money is :class:`decimal.Decimal` rounded half-even to the currency's smallest unit (floats are rejected), stock emptied by an issue is reset to zero value, and any mid-stream stockout rejects the whole batch.
 - feat: :class:`.Median`, :class:`.Percentiles`, :class:`.Quartiles`, :class:`.Quintiles`, :class:`.Deciles` and :class:`.IQR` can be applied to :class:`.TimeDelta` columns, like :class:`.Sum` and :class:`.Mean`.
 - fix: :meth:`.Table.distinct` now deduplicates rows when ``key`` is a sequence of column names.
 - fix: :class:`.Rank` ranks null values last when ``reverse=True``.
